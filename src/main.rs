@@ -5,7 +5,8 @@ const PORT: &str = "8080";
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    let listener = TcpListener::bind(format!("127.0.0.1:{}", PORT)).expect("Failed to bind port");
-
+    let app_addr = format!("127.0.0.1:{PORT}");
+    println!("Listening address: http://{}", &app_addr);
+    let listener = TcpListener::bind(app_addr).expect("Failed to bind port");
     run(listener)?.await
 }
